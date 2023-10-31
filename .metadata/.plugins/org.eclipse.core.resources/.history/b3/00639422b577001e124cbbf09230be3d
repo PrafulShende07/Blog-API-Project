@@ -1,0 +1,5 @@
+package com.CodewithblogApplication.services;
+
+public interface PostServiceI {
+
+}

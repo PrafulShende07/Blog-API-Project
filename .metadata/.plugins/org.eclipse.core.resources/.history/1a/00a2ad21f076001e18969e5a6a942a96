@@ -1,0 +1,51 @@
+package com.CodewithblogApplication.services.Impl;
+
+import java.util.List;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.CodewithblogApplication.payLoads.CategoryDto;
+import com.CodewithblogApplication.repositories.CategoryRepository;
+import com.CodewithblogApplication.services.CategoryServiceI;
+
+@Service
+public class CategoryServiceImpl implements CategoryServiceI {
+	
+	@Autowired
+	private CategoryRepository categoryRepository;
+	
+	@Autowired
+	private ModelMapper modelMapper;
+
+	@Override
+	public CategoryDto createCategory(CategoryDto categoryDto) {
+		
+		return null;
+	}
+
+	@Override
+	public CategoryDto updateCategory(CategoryDto categoryDto, Integer categoryId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CategoryDto getCategory(Integer categoryId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CategoryDto getcategories() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<CategoryDto> deleteCategory() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

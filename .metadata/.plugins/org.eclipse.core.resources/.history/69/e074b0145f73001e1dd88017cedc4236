@@ -1,0 +1,5 @@
+package com.CodewithblogApplication.repositories;
+
+public interface UserRepository {
+
+}

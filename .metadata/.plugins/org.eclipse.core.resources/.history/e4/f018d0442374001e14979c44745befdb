@@ -1,0 +1,92 @@
+package com.CodewithblogApplication.services;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.CodewithblogApplication.exceptions.*;
+import com.CodewithblogApplication.Entity.User;
+import com.CodewithblogApplication.payLoads.UserDto;
+import com.CodewithblogApplication.repositories.UserRepository;
+
+@Service
+public class ServiceImpl implements UserService {
+	
+	@Autowired
+	private UserRepository userRepository;
+	
+	@Autowired
+	private ModelMapper modelMapper;
+
+	@Override
+	public UserDto createuser(UserDto user) {
+		User dtoToUser = DtoToUser(user);
+		User save =userRepository.save(dtoToUser);
+		return userToDto(save);
+	}
+
+	@Override
+	public UserDto upadateUser(UserDto userDto, Integer userId) {  
+		// get user                                                                //  entity class name and whatever we pass id,name and parameter which is used
+		User user = userRepository.findById(userId).orElseThrow(() ->new ResourceNotFoundException("User", "Id", userId));
+		
+		// set user
+		user.setName(userDto.getName());
+		user.setEmail(userDto.getEmail());
+		user.setPassword(userDto.getPassword());
+		user.setAbout(userDto.getAbout());
+		// update user
+		User updateduser = userRepository.save(user);
+		
+		// convert into data transfer object
+		UserDto userToDto = userToDto(updateduser);
+		return userToDto;
+	}
+
+	@Override
+	public UserDto getUserById(Integer userId) {
+		User user = userRepository.findById(userId).orElseThrow(()-> new ResourceNotFoundException("User", "id", userId));
+		return userToDto(user);
+	}
+
+	@Override
+	public List<UserDto> getAllUsers() {
+		List<User> users = userRepository.findAll();
+		List<UserDto> userDtos = users.stream().map(user -> userToDto(user)).collect(Collectors.toList());
+		return userDtos;
+	}
+
+	@Override
+	public void deleteUser(Integer userId) {
+		User user = userRepository.findById(userId).orElseThrow(() ->new ResourceNotFoundException("User","id",userId));
+		
+		userRepository.delete(user);
+	}
+	// it provide userDto and return the user // to convert userDto to user entity 
+	private User DtoToUser(UserDto userDto) {
+		
+		User user= modelMapper.map(userDto, User.class);
+		// source (userDto) - which object we have to change
+		//class name - that class of object we have to convert
+//		User user=new User();		
+//		user.setId(userDto.getId());
+//		user.setName(userDto.getName());
+//		user.setEmail(userDto.getEmail());
+//		user.setPassword(userDto.getPassword());
+//		user.setAbout(userDto.getAbout());
+		return user;
+		
+	}
+	// it provide user and return userDto means to convert user entity to userDto
+	public UserDto userToDto(User user) {
+		
+		UserDto userDto=modelMapper.map(user, UserDto.class);
+		
+		return userDto;
+		
+	}
+
+}

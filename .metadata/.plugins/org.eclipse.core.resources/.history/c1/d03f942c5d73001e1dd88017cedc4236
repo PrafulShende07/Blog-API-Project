@@ -1,0 +1,9 @@
+package com.CodewithblogApplication.services;
+
+import com.CodewithblogApplication.payLoads.UserDto;
+
+public interface UserService {
+	
+	UserDto createuser(UserDto user);
+
+}

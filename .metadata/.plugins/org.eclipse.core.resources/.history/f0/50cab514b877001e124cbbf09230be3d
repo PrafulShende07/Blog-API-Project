@@ -1,0 +1,10 @@
+package com.CodewithblogApplication.services.Impl;
+
+
+import com.CodewithblogApplication.services.PostServiceI;
+
+public class PostServiceImpl implements PostServiceI{
+	
+	
+
+}

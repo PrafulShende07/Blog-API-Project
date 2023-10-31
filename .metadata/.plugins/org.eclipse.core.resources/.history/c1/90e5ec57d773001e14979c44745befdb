@@ -1,0 +1,5 @@
+package com.CodewithblogApplication.controllers;
+
+public class UserController {
+
+}

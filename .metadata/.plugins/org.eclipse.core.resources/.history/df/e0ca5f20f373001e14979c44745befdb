@@ -1,0 +1,46 @@
+package com.CodewithblogApplication.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.CodewithblogApplication.payLoads.UserDto;
+import com.CodewithblogApplication.services.UserService;
+
+@RestController
+@RequestMapping("/api/users")
+public class UserController {
+	
+	@Autowired
+	private UserService userService;
+	
+	// POST - create user
+	@PostMapping("/createuser")
+	public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto){
+		UserDto createuser = userService.createuser(userDto);
+		return new ResponseEntity<UserDto>(createuser,HttpStatus.CREATED);
+		
+	}
+	
+	// PUT - update user
+	@PutMapping("/{userId}")
+	public ResponseEntity<UserDto> updatedUser(@RequestBody UserDto userDto,@PathVariable("userId")Integer userid){
+		
+		UserDto upadateUser = userService.upadateUser(userDto, userid);
+		return new ResponseEntity<UserDto>(upadateUser,HttpStatus.OK);
+		
+	}
+	
+	// GET - get user
+	
+	
+	// DELETE - delete user
+	
+
+}

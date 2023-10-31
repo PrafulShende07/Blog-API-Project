@@ -1,0 +1,22 @@
+package com.CodewithblogApplication.services;
+
+import com.CodewithblogApplication.payLoads.CategoryDto;
+
+public interface CategoryServiceI {
+	
+	// create
+	CategoryDto createCategory(CategoryDto categoryDto);
+	
+	// update
+	void updateCategory(CategoryDto categoryDto, Integer categoryId);
+	
+	// get
+	void getCategory(Integer categoryId);
+	
+	// get all category
+	CategoryDto getcategories();
+	
+	// delete
+	void deleteCategory(int categoryId);
+
+}

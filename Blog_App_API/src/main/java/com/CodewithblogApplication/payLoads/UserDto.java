@@ -1,0 +1,37 @@
+package com.CodewithblogApplication.payLoads;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@NoArgsConstructor
+@Setter
+@Getter
+public class UserDto {
+	
+	private int id;
+	
+	@NotEmpty
+	@Size(min=4,max=30, message="name should be not less than 4 and greater than 30 ")
+	private String name;
+	
+	@Email(message="Email address is not valid !!")
+	private String email;
+	
+	@Size(min=5,max=15, message="password should not less than 5 and greater than 15 charecter")
+//	@Pattern(regexp = "@")
+//	@Pattern(regexp = "uppercse=1")
+//	@Pattern(regexp = "lowercase=10")
+//	@Pattern(regexp = "numeric=4")
+	private String password;
+	
+	@NotEmpty
+	private String about;
+	
+
+}

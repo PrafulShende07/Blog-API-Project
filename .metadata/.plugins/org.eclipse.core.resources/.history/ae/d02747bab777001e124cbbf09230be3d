@@ -1,0 +1,10 @@
+package com.CodewithblogApplication.services;
+
+import com.CodewithblogApplication.Entity.Post;
+import com.CodewithblogApplication.Entity.User;
+
+public interface PostServiceI {
+	
+	Post createUser(User user);
+
+}
